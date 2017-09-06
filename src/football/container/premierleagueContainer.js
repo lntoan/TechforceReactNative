@@ -8,6 +8,7 @@ const mapStateToProps = (state) => {
   return {
     currentMatchday: state.premierleagueReducer.currentMatchday,
     fixturesMatchDay: getfixturesMatchDaySelector(state.premierleagueReducer.fixtures),
+    isLoaded: state.premierleagueReducer.loaded
   }
 };
 

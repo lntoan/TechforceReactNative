@@ -47,7 +47,6 @@ const loginReducer = (state = initialState, action) => {
             });
 
         default:
-          console.log('login default');
             return state
     }
 }

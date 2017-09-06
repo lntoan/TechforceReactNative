@@ -45,7 +45,6 @@ export default class loginComponent extends React.Component {
       })
       .then(() => {
         GoogleSignin.currentUserAsync().then((user) => {
-              console.log('USER', user);
               this.props.setUser(user);
             }).done();
       });

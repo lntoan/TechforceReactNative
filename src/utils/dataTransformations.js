@@ -16,10 +16,9 @@ const getMultimediaUrlByFormat = (multimedia, format,fieldname) => {
     return 'https://static01.nyt.com/images/2017/08/29/insider/28UBERsub/28UBERsub-thumbStandard-v3.jpg';
   }else{
     console.log('chet ne');
-    return matchingFormat;
+    console.log(matchingFormat.url);
+    return matchingFormat.url;
   }
-
-  return 'https://static01.nyt.com/images/2017/08/27/world/middleeast/27propaganda-promo/27propaganda-promo-thumbStandard.png';
 };
 
 const convertTimeZone = (time) => {
@@ -65,7 +64,7 @@ export const reshapeNewsData = rnnyReducer => (
     description: abstract || '',
     author: byline ? byline.replace('By ', '') : '',
     location: geo_facet.length > 0 ? geo_facet[0] : '',
-    imageUrl: getMultimediaUrlByFormat(multimedia, 'thumbLarge'),
+    imageUrl: getMultimediaUrlByFormat(multimedia, 'thumbLarge','url'),
     date: moment(published_date).format('MMM Do YYYY'),
     title: title,
     url: url

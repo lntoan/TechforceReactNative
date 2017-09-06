@@ -39,6 +39,11 @@ export const setcurrentMatchday = (currentMatchday) => ({
     currentMatchday
 });
 
+export const setLoading = (loading) => ({
+    type: 'SET_LOADING',
+    loading
+});
+
 export const setFixturesMatchDay = (fixtures) => ({
     type: 'SET_FixturesMatchDay',
     fixtures
@@ -66,7 +71,7 @@ export const loadfixturesMatchDay = () => {
 }
 
 export const loadfixturesMatchDayData = (dispatch,url) => {
-  console.log('loadfixturesMatchDayData');
+  dispatch(setLoading(false));
   fetch((url), {
           method: 'get',
           headers: {
@@ -75,7 +80,7 @@ export const loadfixturesMatchDayData = (dispatch,url) => {
       })
   .then((response) => response.json())
   .then((json) => {
-    console.log(json);
+    dispatch(setLoading(true));
     dispatch(setFixturesMatchDay(json.fixtures))
   })
   .catch(() => {

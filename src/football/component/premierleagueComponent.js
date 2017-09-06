@@ -2,8 +2,6 @@ import React from 'react';
 import { View, TouchableOpacity,RefreshControl,ActivityIndicator,Platform,
          NetInfo,Linking,ViewPropTypes, ImageBackground, Modal,WebView
        } from 'react-native';
-// import Image from 'react-native-image-progress';
-// import Progress from 'react-native-progress';
 import { RkCard, RkStyleSheet, RkText } from 'react-native-ui-kitten';
 import {OptimizedFlatList} from 'react-native-optimized-flatlist';
 import FitImage from 'react-native-fit-image';
@@ -30,8 +28,6 @@ export default class premierleagueComponent extends React.Component {
       modalUrl: ''
     }
     this.refresh = this.refresh.bind(this);
-    this.onModalClose = this.onModalClose.bind(this);
-    this.onModalOpen = this.onModalOpen.bind(this);
     this.handleConnectivityChange = this.handleConnectivityChange.bind(this);
     this.getTimeOrResult = this.getTimeOrResult.bind(this);
   }
@@ -52,11 +48,13 @@ export default class premierleagueComponent extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     console.log('nextProps');
-    console.log(nextProps.fixturesMatchDay);
-    this.setState({
-      data: nextProps.fixturesMatchDay,//nextProps.leagueteam, // rnnynews is properties defined in ACtion
-      initialLoading: false
-    });
+    console.log(nextProps);
+    if (nextProps.isLoaded == true ){
+      this.setState({
+        data: nextProps.fixturesMatchDay,//nextProps.leagueteam, // rnnynews is properties defined in ACtion
+        initialLoading: false
+      });
+    }
   }
 
   componentWillUnmount() {
@@ -65,27 +63,12 @@ export default class premierleagueComponent extends React.Component {
 
   refresh() {
     if (this.props.loadPremierLeagueTeam) {
-      //this.props.loadPremierLeagueTeam();
       this.props.loadfixturesMatchDay();
     }
   }
 
   _keyExtractor(post, index) {
     return post.id;
-  }
-
-  onModalOpen(url) {
-    this.setState({
-      modalVisible: true,
-      modalUrl: url
-    });
-  }
-
-  onModalClose() {
-    this.setState({
-      modalVisible: false,
-      modalUrl: undefined
-    });
   }
 
   getTimeOrResult(info){
@@ -131,8 +114,8 @@ export default class premierleagueComponent extends React.Component {
     return (
       <TouchableOpacity
         delayPressIn={70}
-        activeOpacity={0.8}
-        onPress={() => this.onModalOpen(info.item.id)}>
+        activeOpacity={0.8}>
+        {/* onPress={() => this.onModalOpen(info.item.id)}> */}
         <RkCard rkType='blog' style={styles.card}>
           <View rkCardFooter>
             <View style={styles.viewcontainer}>
@@ -144,36 +127,6 @@ export default class premierleagueComponent extends React.Component {
         </RkCard>
       </TouchableOpacity>
     )
-  }
-
-  renderModal() {
-    return (
-      <Modal
-        animationType="slide"
-        visible={this.state.modalVisible}
-        onRequestClose={this.onModalClose}
-      >
-        <View style={styles.modalContent}>
-          <View style={styles.modalButtons}>
-            <TouchableOpacity
-              onPress={this.onModalClose}
-              style={styles.closeButton}
-            >
-              <RkText>Close</RkText>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => Linking.openURL(this.state.modalUrl)}
-            >
-              <RkText>Open in Browser</RkText>
-            </TouchableOpacity>
-          </View>
-          <WebView
-            scalesPageToFit
-            source={{ uri: this.state.modalUrl }}
-          />
-        </View>
-      </Modal>
-    );
   }
 
   render() {
@@ -210,7 +163,6 @@ export default class premierleagueComponent extends React.Component {
               renderItem={this.renderItem}
               keyExtractor={this._keyExtractor}
               style={styles.container}/>
-              {this.renderModal()}
           </View>
         )
       )
@@ -222,7 +174,6 @@ const styles = RkStyleSheet.create(theme => ({
   container: {
     backgroundColor: theme.colors.screen.scroll,
     paddingVertical: 8,
-    //margin: 14 android error
     paddingHorizontal: 14
   },
   viewcontainer:{
