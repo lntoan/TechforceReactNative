@@ -5,7 +5,6 @@ import { AppNavigator } from '../containers/TechforceNavContainer';
 
 //function nav(state = initialNavState, action) {
 export default (state, action = {}) => {
-
   switch (action.type) {
     case 'Login':
       nextState = AppNavigator.router.getStateForAction(

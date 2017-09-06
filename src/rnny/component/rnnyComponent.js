@@ -69,8 +69,6 @@ export default class rnnyCompoent extends React.Component {
   }
 
   onModalOpen(url) {
-    console.log('url');
-    console.log(url);
     this.setState({
       modalVisible: true,
       modalUrl: url
@@ -116,8 +114,6 @@ export default class rnnyCompoent extends React.Component {
   }
 
   renderModal() {
-    console.log('modelurl');
-    console.log(this.state.modalUrl);
     return (
       <Modal
         animationType="slide"

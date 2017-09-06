@@ -12,8 +12,13 @@ let moment = require('moment');
 
 export default class premierleagueComponent extends React.Component {
   static navigationOptions = {
-    title: 'premier league match '.toUpperCase() //+ this.props.currentMatchday
+    title: 'premier league 2017 '.toUpperCase() //+ this.props.currentMatchday
   };
+
+  // static navigationOptions = ({ navigation, screenProps }) => {
+  //   console.log('le ngoc toan');
+  //   console.log(screenProps);
+  // }
 
   constructor(props) {
     super(props);
@@ -30,8 +35,6 @@ export default class premierleagueComponent extends React.Component {
     this.refresh = this.refresh.bind(this);
     this.handleConnectivityChange = this.handleConnectivityChange.bind(this);
     this.getTimeOrResult = this.getTimeOrResult.bind(this);
-    console.log('dau tien');
-    console.log(this.props);
   }
 
   handleConnectivityChange(isConnected) {

@@ -46,9 +46,10 @@ export const MainRoutes = [
   },
   {
     id: 'PremierLeague2017',
-    title: 'PremierLeague2017',
+    title: 'PremierLeague 2017',
     icon: FontIcons.other,
     screen: PremierleagueContainer,
+    //screenProps: '4',//,this.state.premierleagueReducer.currentMatchday,
     children: []
   }
 ];
