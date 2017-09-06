@@ -4,19 +4,15 @@ import {Platform} from 'react-native';
 import 'moment-timezone';
 
 const getMultimediaUrlByFormat = (multimedia, format,fieldname) => {
-  console.log('getMultimediaUrlByFormat');
+  
   if (!multimedia) {
-    console.log('chet 1');
     return 'https://static01.nyt.com/images/2017/08/28/business/28BRAINWAVES1/28BRAINWAVES1-thumbStandard.jpg';
   }
 
   const matchingFormat = multimedia.find(media => media.format === format);
   if (!matchingFormat) {
-    console.log('chet 2');
     return 'https://static01.nyt.com/images/2017/08/29/insider/28UBERsub/28UBERsub-thumbStandard-v3.jpg';
   }else{
-    console.log('chet ne');
-    console.log(matchingFormat.url);
     return matchingFormat.url;
   }
 };
@@ -40,7 +36,6 @@ export const reshapefixturesMatchDayData = premierleagueReducer => (
     goalsHomeTeam: result.goalsHomeTeam,
     goalsAwayTeam: result.goalsAwayTeam,
     status: status,
-
 
   }))
 );
