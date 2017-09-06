@@ -1,5 +1,5 @@
 import React from 'react';
-import { ListView,FlatList, View, TouchableOpacity,RefreshControl,ActivityIndicator,
+import { View, TouchableOpacity,RefreshControl,ActivityIndicator,Platform,
          NetInfo,Linking,ViewPropTypes, ImageBackground, Modal,WebView
        } from 'react-native';
 // import Image from 'react-native-image-progress';
@@ -89,30 +89,38 @@ export default class premierleagueComponent extends React.Component {
   }
 
   getTimeOrResult(info){
-    console.log('info');
-    console.log(info);
     if (info.item.status == "TIMED"){
       return (
         <View style={styles.logotimecontainer}>
-          {/* <ImageBackground style={[styles.image]} source={{uri: info.item.homeTeamLogo}}/> */}
-          <ImageBackground style={[styles.image]} source={info.item.homeTeamLogo}/>
+          {Platform.OS === 'ios' ?
+            <ImageBackground style={[styles.image]} source={{uri: info.item.homeTeamLogo}}/>:
+            <ImageBackground style={[styles.image]} source={info.item.homeTeamLogo}/>
+          }
           <View style={styles.timedate}>
             <RkText rkType='header6'>{info.item.time}</RkText>
             <RkText rkType='header6'>{info.item.date}</RkText>
           </View>
-          {/* <ImageBackground style={[styles.image]} source={{uri: info.item.awayTeamLogo}}/> */}
-          <ImageBackground style={[styles.image]} source={info.item.awayTeamLogo}/>
+          {Platform.OS === 'ios' ?
+            <ImageBackground style={[styles.image]} source={{uri: info.item.awayTeamLogo}}/>:
+            <ImageBackground style={[styles.image]} source={info.item.awayTeamLogo}/>
+          }
         </View>
       );
     }
     else {
       return (
         <View style={styles.logotimecontainer}>
-          <ImageBackground style={[styles.image]} source={{uri: info.item.homeTeamLogo}}/>
+          {Platform.OS === 'ios' ?
+            <ImageBackground style={[styles.image]} source={{uri: info.item.homeTeamLogo}}/>:
+            <ImageBackground style={[styles.image]} source={info.item.homeTeamLogo}/>
+          }
           <RkText rkType='header6'>{`${info.item.goalsHomeTeam}`}</RkText>
           <RkText rkType='header6'>:</RkText>
           <RkText rkType='header6'>{`${info.item.goalsAwayTeam}`}</RkText>
-          <ImageBackground style={[styles.image]} source={{uri: info.item.awayTeamLogo}}/>
+          {Platform.OS === 'ios' ?
+            <ImageBackground style={[styles.image]} source={{uri: info.item.awayTeamLogo}}/>:
+            <ImageBackground style={[styles.image]} source={info.item.awayTeamLogo}/>
+          }
         </View>
       );
     }
@@ -197,7 +205,7 @@ export default class premierleagueComponent extends React.Component {
               //     onRefresh={this.refresh}
               //   />
               // }
-              //enableEmptySections
+              enableEmptySections
               data={this.state.data}
               renderItem={this.renderItem}
               keyExtractor={this._keyExtractor}

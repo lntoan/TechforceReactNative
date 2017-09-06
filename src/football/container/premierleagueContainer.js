@@ -5,15 +5,9 @@ import premierleagueComponent from '../component/premierleagueComponent';
 import { allTeamSelector,getfixturesMatchDaySelector } from '../selector/premierleagueSelector';
 
 const mapStateToProps = (state) => {
-  // return {
-  //   leagueteam: allTeamSelector(state),
-  //   fixturesMatchDay: getfixturesMatchDaySelector(state)
-  // }
   return {
     currentMatchday: state.premierleagueReducer.currentMatchday,
-    //leagueteam: allTeamSelector(state.premierleagueReducer.allteams),
     fixturesMatchDay: getfixturesMatchDaySelector(state.premierleagueReducer.fixtures),
-    //teambyId: []
   }
 };
 

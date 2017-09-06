@@ -18,7 +18,6 @@ export default (state, action = {}) => {
       );
       break;
     default:
-      console.log('default');
       nextState = AppNavigator.router.getStateForAction(action, state);
       break;
   }

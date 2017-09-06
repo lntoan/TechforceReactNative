@@ -1,5 +1,6 @@
 import moment from 'moment';
-import {shortname,teamlogoImage} from './shortname';
+import {shortname,teamlogoImage,teamlogoAssesst} from './shortname';
+import {Platform} from 'react-native';
 import 'moment-timezone';
 
 const getMultimediaUrlByFormat = (multimedia, format,fieldname) => {
@@ -33,8 +34,8 @@ export const reshapefixturesMatchDayData = premierleagueReducer => (
     id: _links.self.href,//homeTeamName + awayTeamName,
     homeTeamName: shortname[homeTeamName],
     awayTeamName: shortname[awayTeamName],
-    homeTeamLogo: teamlogoImage[homeTeamName],
-    awayTeamLogo: teamlogoImage[awayTeamName],
+    homeTeamLogo: Platform.OS === 'ios' ? teamlogoAssesst[homeTeamName]:teamlogoImage[homeTeamName],
+    awayTeamLogo: Platform.OS === 'ios' ? teamlogoAssesst[awayTeamName]:teamlogoImage[awayTeamName],
     time: convertTimeZone(date).format("HH:mm"),
     date: convertTimeZone(date).format("DD/MM"),
     goalsHomeTeam: result.goalsHomeTeam,
