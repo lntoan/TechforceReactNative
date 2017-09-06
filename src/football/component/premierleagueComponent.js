@@ -1,7 +1,9 @@
 import React from 'react';
-import { ListView,FlatList, View, Image, TouchableOpacity,RefreshControl,ActivityIndicator,
+import { ListView,FlatList, View, TouchableOpacity,RefreshControl,ActivityIndicator,
          NetInfo,Linking,ViewPropTypes, ImageBackground, Modal,WebView
        } from 'react-native';
+// import Image from 'react-native-image-progress';
+// import Progress from 'react-native-progress';
 import { RkCard, RkStyleSheet, RkText } from 'react-native-ui-kitten';
 import {OptimizedFlatList} from 'react-native-optimized-flatlist';
 import FitImage from 'react-native-fit-image';
@@ -87,15 +89,19 @@ export default class premierleagueComponent extends React.Component {
   }
 
   getTimeOrResult(info){
+    console.log('info');
+    console.log(info);
     if (info.item.status == "TIMED"){
       return (
         <View style={styles.logotimecontainer}>
-          <ImageBackground style={[styles.image]} source={{uri: info.item.homeTeamLogo}}/>
+          {/* <ImageBackground style={[styles.image]} source={{uri: info.item.homeTeamLogo}}/> */}
+          <ImageBackground style={[styles.image]} source={info.item.homeTeamLogo}/>
           <View style={styles.timedate}>
             <RkText rkType='header6'>{info.item.time}</RkText>
             <RkText rkType='header6'>{info.item.date}</RkText>
           </View>
-          <ImageBackground style={[styles.image]} source={{uri: info.item.awayTeamLogo}}/>
+          {/* <ImageBackground style={[styles.image]} source={{uri: info.item.awayTeamLogo}}/> */}
+          <ImageBackground style={[styles.image]} source={info.item.awayTeamLogo}/>
         </View>
       );
     }
@@ -185,13 +191,13 @@ export default class premierleagueComponent extends React.Component {
         ) : (
           <View style={styles.viewcontainer}>
             <OptimizedFlatList
-              refreshControl={
-                <RefreshControl
-                  refreshing={refreshing}
-                  onRefresh={this.refresh}
-                />
-              }
-              enableEmptySections
+              // refreshControl={
+              //   <RefreshControl
+              //     refreshing={refreshing}
+              //     onRefresh={this.refresh}
+              //   />
+              // }
+              //enableEmptySections
               data={this.state.data}
               renderItem={this.renderItem}
               keyExtractor={this._keyExtractor}
@@ -204,15 +210,11 @@ export default class premierleagueComponent extends React.Component {
   }
 }
 
-// premierleagueComponent.propTypes = {
-//   leagueteam: PropTypes.arrayOf(PropTypes.object),
-//   loadPremierLeagueTeam: PropTypes.func
-// };
-
 const styles = RkStyleSheet.create(theme => ({
   container: {
     backgroundColor: theme.colors.screen.scroll,
     paddingVertical: 8,
+    //margin: 14 android error
     paddingHorizontal: 14
   },
   viewcontainer:{

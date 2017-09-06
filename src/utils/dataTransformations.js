@@ -1,5 +1,5 @@
 import moment from 'moment';
-import {shortname,teamlogo} from './shortname';
+import {shortname,teamlogoImage} from './shortname';
 import 'moment-timezone';
 
 const getMultimediaUrlByFormat = (multimedia, format,fieldname) => {
@@ -26,7 +26,6 @@ const convertTimeZone = (time) => {
   return moment(time);
 };
 
-
 export const reshapefixturesMatchDayData = premierleagueReducer => (
   //console.log('reshapefixturesMatchDayData');
   premierleagueReducer.map(({ date, homeTeamName, awayTeamName, result, status, _links }) => ({
@@ -34,8 +33,8 @@ export const reshapefixturesMatchDayData = premierleagueReducer => (
     id: _links.self.href,//homeTeamName + awayTeamName,
     homeTeamName: shortname[homeTeamName],
     awayTeamName: shortname[awayTeamName],
-    homeTeamLogo: teamlogo[homeTeamName],
-    awayTeamLogo: teamlogo[awayTeamName],
+    homeTeamLogo: teamlogoImage[homeTeamName],
+    awayTeamLogo: teamlogoImage[awayTeamName],
     time: convertTimeZone(date).format("HH:mm"),
     date: convertTimeZone(date).format("DD/MM"),
     goalsHomeTeam: result.goalsHomeTeam,
