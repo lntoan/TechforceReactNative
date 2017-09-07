@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, TouchableOpacity,RefreshControl,ActivityIndicator,Platform,
-         NetInfo,Linking,ViewPropTypes, ImageBackground, Modal,WebView
+         NetInfo,Linking,ViewPropTypes, ImageBackground, Modal,WebView,FlatList
        } from 'react-native';
 import { RkCard, RkStyleSheet, RkText } from 'react-native-ui-kitten';
 import {OptimizedFlatList} from 'react-native-optimized-flatlist';
@@ -154,7 +154,7 @@ export default class premierleagueComponent extends React.Component {
 
         ) : (
           <View style={styles.viewcontainer}>
-            <OptimizedFlatList
+            <FlatList
               // refreshControl={
               //   <RefreshControl
               //     refreshing={refreshing}
@@ -163,6 +163,7 @@ export default class premierleagueComponent extends React.Component {
               // }
               enableEmptySections
               data={this.state.data}
+              extraData={this.state.data}
               renderItem={this.renderItem}
               keyExtractor={this._keyExtractor}
               style={styles.container}/>
