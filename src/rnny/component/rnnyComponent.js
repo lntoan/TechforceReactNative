@@ -166,14 +166,15 @@ export default class rnnyCompoent extends React.Component {
         ) : (
           <View style={styles.viewcontainer}>
             <OptimizedFlatList
-              refreshControl={
-                <RefreshControl
-                  refreshing={refreshing}
-                  onRefresh={this.refresh}
-                />
-              }
+              // refreshControl={
+              //   <RefreshControl
+              //     refreshing={refreshing}
+              //     onRefresh={this.refresh}
+              //   />
+              // }
               enableEmptySections
               data={this.state.data}
+              extraData={this.state.data}
               renderItem={this.renderItem}
               keyExtractor={this._keyExtractor}
               style={styles.container}/>
