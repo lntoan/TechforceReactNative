@@ -123,7 +123,7 @@ export default class loginComponent extends React.Component {
         <RkTextInput rkType='rounded' placeholder='Username'
           value={this.props.username}
           autoCapitalize="none"
-          autoFocus = {true}
+          //autoFocus = {true}
           onChangeText={(username) => this.setState({username})}/>
         <RkTextInput rkType='rounded' placeholder='Password'
           value={this.props.password}
